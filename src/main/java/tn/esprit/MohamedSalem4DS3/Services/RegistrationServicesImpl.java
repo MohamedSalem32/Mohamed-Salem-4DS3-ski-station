@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.MohamedSalem4DS3.entities.Course;
 import tn.esprit.MohamedSalem4DS3.entities.Registration;
 import tn.esprit.MohamedSalem4DS3.entities.Skier;
+import tn.esprit.MohamedSalem4DS3.entities.Support;
 import tn.esprit.MohamedSalem4DS3.repositories.ICourseRepository;
 import tn.esprit.MohamedSalem4DS3.repositories.IRegistrationRepository;
 import tn.esprit.MohamedSalem4DS3.repositories.ISkierRepository;
@@ -58,5 +59,10 @@ public class RegistrationServicesImpl implements IRegistrationServices {
         assert registration != null;
         registration.setCourse(course);
         return registrationRepository.save(registration);
+    }
+
+    @Override
+    public int getNumWeeksCourseOfInstructorBySupport(Long numInstructor, Support support) {
+        return registrationRepository.countDistinctWeeksByInstructorAndSupport(numInstructor, support);
     }
 }

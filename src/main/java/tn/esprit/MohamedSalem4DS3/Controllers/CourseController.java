@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.MohamedSalem4DS3.Services.ICourseServices;
 import tn.esprit.MohamedSalem4DS3.entities.Course;
+import tn.esprit.MohamedSalem4DS3.entities.Support;
+import tn.esprit.MohamedSalem4DS3.entities.TypeCourse;
 
 import java.util.List;
 
@@ -37,5 +39,15 @@ public class CourseController {
     @DeleteMapping("remove/{numCourse}")
     void removeCourse(@PathVariable("numCourse") Long numCourse) {
         courseService.deleteCourse(numCourse);
+    }
+
+    @GetMapping("byInstructorAndSupport/{numInstructor}/{support}")
+    public List<Course> getCoursesByInstructorAndSupport(@PathVariable Long numInstructor, @PathVariable Support support) {
+        return courseService.getCoursesByInstructorAndSupport(numInstructor, support);
+    }
+
+    @GetMapping("byTypeAndWeek/{typeCourse}/{numWeek}")
+    public List<Course> getCoursesByType(@PathVariable TypeCourse typeCourse, @PathVariable int numWeek) {
+        return courseService.getCoursesByType(typeCourse, numWeek);
     }
 }

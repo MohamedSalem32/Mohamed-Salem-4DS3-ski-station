@@ -3,6 +3,8 @@ package tn.esprit.MohamedSalem4DS3.Services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.MohamedSalem4DS3.entities.Course;
+import tn.esprit.MohamedSalem4DS3.entities.Support;
+import tn.esprit.MohamedSalem4DS3.entities.TypeCourse;
 import tn.esprit.MohamedSalem4DS3.repositories.ICourseRepository;
 
 import java.util.List;
@@ -36,5 +38,15 @@ public class CourseServicesImpl implements ICourseServices {
     @Override
     public List<Course> retrieveAllCourses() { // Renamed
         return courseRepository.findAll();
+    }
+
+    @Override
+    public List<Course> getCoursesByInstructorAndSupport(Long numInstructor, Support support) {
+        return courseRepository.findByInstructorNumInstructorAndSupport(numInstructor, support);
+    }
+
+    @Override
+    public List<Course> getCoursesByType(TypeCourse typeCourse, int numWeek) {
+        return courseRepository.findByTypeCourseAndRegistrationsNumWeek(typeCourse, numWeek);
     }
 }

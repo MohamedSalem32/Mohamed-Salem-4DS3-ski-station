@@ -2,6 +2,7 @@ package tn.esprit.MohamedSalem4DS3.Services;
 
 import tn.esprit.MohamedSalem4DS3.entities.Instructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IInstructorServices {
@@ -10,5 +11,11 @@ public interface IInstructorServices {
     Instructor addInstructor(Instructor instructor);
     Instructor updateInstructor(Instructor instructor);
     void deleteInstructor(Long numInstructor);
-    List<Instructor> retrieveInstructors(); // Renamed
+    List<Instructor> retrieveInstructors();
+
+    // Slide 17
+    Instructor addInstructorAndAssignToCourse(Instructor instructor, Long numCourse);
+
+    // Add to IInstructorServices
+    List<Instructor> getInstructorsByDate(LocalDate dateOfHire);
 }

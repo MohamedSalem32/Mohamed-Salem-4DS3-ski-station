@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.MohamedSalem4DS3.Services.ISkierServices;
 import tn.esprit.MohamedSalem4DS3.entities.Skier;
+import tn.esprit.MohamedSalem4DS3.entities.TypeSubscription;
 
 import java.util.List;
 
@@ -41,6 +42,16 @@ public class SkierController {
     @DeleteMapping("remove/{numSkier}")
     void removeSkier(@PathVariable("numSkier") Long numSkier) {
         skierService.removeSkier(numSkier);
+    }
+
+    @PutMapping("assignToPiste/{numSkier}/{numPiste}")
+    public Skier assignSkierToPiste(@PathVariable Long numSkier, @PathVariable Long numPiste) {
+        return skierService.assignSkierToPiste(numSkier, numPiste);
+    }
+
+    @GetMapping("bySubscriptionType/{type}")
+    public List<Skier> retrieveSkiersBySubscriptionType(@PathVariable TypeSubscription type) {
+        return skierService.retrieveSkiersBySubscriptionType(type);
     }
 }
 

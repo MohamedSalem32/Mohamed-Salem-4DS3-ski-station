@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.MohamedSalem4DS3.Services.IRegistrationServices;
 import tn.esprit.MohamedSalem4DS3.entities.Registration;
+import tn.esprit.MohamedSalem4DS3.entities.Support;
 
 import java.util.List;
 
@@ -47,5 +48,10 @@ public class RegistrationController {
     @PutMapping("assign/{numRegistration}/{numCourse}")
     public Registration assignRegistrationToCourse(@PathVariable Long numRegistration, @PathVariable Long numCourse) {
         return registrationServices.assignRegistrationToCourse(numRegistration, numCourse);
+    }
+
+    @GetMapping("numWeeksByInstructorAndSupport/{numInstructor}/{support}")
+    public int getNumWeeksCourseOfInstructorBySupport(@PathVariable Long numInstructor, @PathVariable Support support) {
+        return registrationServices.getNumWeeksCourseOfInstructorBySupport(numInstructor, support);
     }
 }

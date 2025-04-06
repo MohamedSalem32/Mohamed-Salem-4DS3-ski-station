@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.MohamedSalem4DS3.Services.IInstructorServices;
 import tn.esprit.MohamedSalem4DS3.entities.Instructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -37,5 +38,15 @@ public class InstructorController {
     @DeleteMapping("remove/{numInstructor}")
     void removeInstructor(@PathVariable("numInstructor") Long numInstructor) { // Renamed
         instructorService.deleteInstructor(numInstructor);
+    }
+
+    @PostMapping("addAndAssignToCourse/{numCourse}")
+    public Instructor addInstructorAndAssignToCourse(@RequestBody Instructor instructor, @PathVariable Long numCourse) {
+        return instructorService.addInstructorAndAssignToCourse(instructor, numCourse);
+    }
+
+    @GetMapping("byDateOfHire/{dateOfHire}")
+    public List<Instructor> getInstructorsByDate(@PathVariable LocalDate dateOfHire) {
+        return instructorService.getInstructorsByDate(dateOfHire);
     }
 }
